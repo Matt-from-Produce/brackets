@@ -1,0 +1,19 @@
+{
+  "name": "brackets",
+  "version": "1.0.0",
+  "description": "Manage and participate in tournaments",
+  "main": "index.js",
+  "author": "Matthew Trager",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server --silent"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1"
+  }
+}
