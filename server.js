@@ -14,7 +14,7 @@ var app = express()
 //   console.log('shits listening on 3000')
 // })
 
-mongoose.connect("mongodb://brackets-MATT:bingenetflixlol@localhost:27017/brackets")
+mongoose.connect("mongodb://localhost:27017/brackets")
 var db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'connection error: '))
