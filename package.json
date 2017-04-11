@@ -6,7 +6,9 @@
   "author": "Matthew Trager",
   "license": "MIT",
   "scripts": {
-    "start": "http-server --silent"
+    "start": "http-server --silent",
+    "build:dev": "webpack",
+    "dev": "webpack-dev-server"
   },
   "dependencies": {
     "express": "^4.15.2",
@@ -14,6 +16,8 @@
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
-    "babel-loader": "^6.4.1"
+    "babel-loader": "^6.4.1",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   }
 }
