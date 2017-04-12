@@ -1,11 +1,8 @@
 # brackets
 Tournament Management! Sign up! Sign in! Make a bracket! Annoy your friends and tell them that if they want to play in the tournament they have to use my poo app and ALSO pay $20!
 
-We use bleeding-edge enhanced APIs to process server-side heuristic algorithms giving you the full tournament experience you deserve.
-
 # how?
-WELL I'M GLAD YOU ASKED
-we use many nodey things like javascripts and we dont use semicolons and stuff
+We use bleeding-edge enhanced APIs to process pre-rendered heuristic algorithms giving you the full tournament experience you deserve.
 
 # seriously:
 
@@ -19,4 +16,4 @@ We'll use Webpack to ship the code. Webpack is important for this project becaus
 
 # okay, how do i use it?
 
-idk man, get back to me later
+you don't yet :(
