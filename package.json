@@ -1,0 +1,28 @@
+{
+  "name": "brackets",
+  "version": "0.0.0",
+  "description": "Manage and participate in tournaments",
+  "main": "index.js",
+  "author": "Matthew Trager",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server --silent",
+    "prebuild": "rimraf dist",
+    "build": "webpack -p --env.prod",
+    "prebuild:dev": "rimraf dist",
+    "build:dev": "webpack --env.dev",
+    "dev": "webpack-dev-server --env.dev"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.3.3",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
