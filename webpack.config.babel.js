@@ -1,8 +1,6 @@
 
 
-// oh suh webpack
-
-// put my fucking project together because i have no idea how to build it without you!
+// hey webpack
 
 
 const { resolve } = require('path')
