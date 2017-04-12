@@ -1,6 +1,6 @@
 {
   "name": "brackets",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Manage and participate in tournaments",
   "main": "index.js",
   "author": "Matthew Trager",
