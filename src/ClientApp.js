@@ -1,3 +1,0 @@
-
-// "Useless!"
-//     - Donald Trump
