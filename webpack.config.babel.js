@@ -12,6 +12,14 @@ module.exports = env => {
       filename: './bundle.js',
       publicPath: '/dist/'
     },
+    resolve: {
+      extensions: ['.js']
+    },
+    stats: {
+      colors: true,
+      reasons: true,
+      chunks: true
+    },
     devtool: env.prod ? 'source-map' : 'eval',
     module: {
       loaders: [
