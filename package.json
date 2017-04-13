@@ -12,7 +12,7 @@
     "prebuild:dev": "rimraf dist",
     "build:dev": "webpack --env.dev",
     "dev": "webpack-dev-server --env.dev",
-    "lint": "standard",
+    "lint": "eslint src/js/**/*.js webpack.config.babel.js",
     "test": "karma start",
     "watch:test": "npm test -- --auto-watch --no-single-run",
     "validate": "npm-run-all --parallel built test"
