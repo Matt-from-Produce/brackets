@@ -1,26 +1,20 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import MyTitle from './MyTitle'
+import { render } from 'react-dom'
+import { BrowserRouter, Match } from 'react-router'
+import Landing from './Landing'
+import Profile from './Profile'
 
-// first react component
-var div = React.DOM.div
-
-// convenience method not really necessary so we'll see
-var MyTitleFactory = React.createFactory(MyTitle)
-
-// blueprint
-var FirstComp = React.createClass({
-  render: function () {
+const App = React.createClass({
+  render () {
     return (
-      div(null,
-        MyTitleFactory({title: 'poops hello', color: 'peru'}),
-        MyTitleFactory({title: 'testing 1 2', color: 'mediumaquamarine'}),
-        MyTitleFactory({title: 'im a little teapot', color: 'moccasin'}),
-        MyTitleFactory({title: 'short and stout', color: 'tomato'})
-      )
+      <BrowserRouter>
+        <div className='app'>
+          <Match exactly pattern='/' component={Landing} />
+          <Match pattern='/profile' component={Profile} />
+        </div>
+      </BrowserRouter>
     )
   }
 })
 
-// instantiate blueprint (with createElement()) and put it on the dom (with render())
-ReactDOM.render(React.createElement(FirstComp), document.getElementById('app'))
+render(<App />, document.getElementById('app'))
