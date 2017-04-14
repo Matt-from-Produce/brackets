@@ -1,6 +1,7 @@
 var express = require('express') // express!
 // TODO setup global error handling
 var path = require('path') // built-in middleware! (comes w/ node)
+var mongoose = require('mongoose')
 
 // create the api
 var api = require('./api/api')
@@ -14,6 +15,7 @@ require('./middleware/appMiddleware')(app)
 // get the api
 app.use('/api', api)
 
+// connect
 
 // TODO somehow extrapolate this elsewhere? we should only get the app if we want it?
 // because this is specifically the web app?
