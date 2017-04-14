@@ -3,7 +3,6 @@ import { render } from 'react-dom'
 import {
   BrowserRouter as Router,
   Route } from 'react-router-dom'
-
 import Landing from './Landing'
 import Profile from './Profile'
 
