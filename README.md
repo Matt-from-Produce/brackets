@@ -5,7 +5,7 @@ Manage a tournament with a straightforward UI that aims to remove all the tediou
 
 We use MongoDB to store data. Our data can be summed up in two collections, users and brackets.
 
-Express server, once I figure that out.
+Node+Express server, once I figure that out.
 
 React will be the front. Shouldn't need Redux for quite some time.
 
