@@ -4,7 +4,7 @@ Manage a tournament with a straightforward UI that aims to remove all the tediou
 # how?
 Firstly, by using MongoDB to store data. Data can be summed up in two collections, users and brackets.
 
-Node+Express to serve it up, making use of Express' advantages for SPAs and interaction with Mongoose and implementing a RESTful API.
+Node+Express to serve it up, making use of its advantages for SPAs and implementing a RESTful API.
 
 React will be the front. No Redux yet!
 
