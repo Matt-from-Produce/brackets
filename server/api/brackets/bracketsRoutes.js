@@ -7,5 +7,10 @@ router.route('/')
     logger.log('hey from brackets route')
     res.send({ok: true})
   })
+router.route('/test')
+  .get(function(req, res) {
+    logger.log('suh dude')
+    res.send({ok: true})
+  })
 
 module.exports = router

@@ -10,8 +10,8 @@ var app = require('./server/server')
 // and here
 var logger = require('./server/utils/logger')
 
-// i feel like i already knew that but its good to remember that
 // config.js is the FIRST thing that ever happens when starting the server
+// i feel like i already knew that but its good to remember that
 
 app.listen(config.port, function() {
   logger.log('listen! http://localhost:' + config.port)
