@@ -15,6 +15,9 @@ module.exports = env => {
     resolve: {
       extensions: ['.js']
     },
+    devServer: {
+      historyApiFallback: true
+    },
     stats: {
       colors: true,
       reasons: true,

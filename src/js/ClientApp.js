@@ -1,16 +1,21 @@
 import React from 'react'
 import { render } from 'react-dom'
-// import { BrowserRouter, Match } from 'react-router'
+import {
+  BrowserRouter as Router,
+  Route } from 'react-router-dom'
+
 import Landing from './Landing'
 import Profile from './Profile'
 
 const App = React.createClass({
   render () {
     return (
-      <div className='app'>
-        <Landing />
-        <Profile />
-      </div>
+      <Router>
+        <div className='app'>
+          <Route exact path='/' component={Landing} />
+          <Route path='/profile' component={Profile} />
+        </div>
+      </Router>
     )
   }
 })
