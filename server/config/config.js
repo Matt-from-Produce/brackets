@@ -6,11 +6,6 @@ var config = {
   prod: 'prod',
   test: 'test',
   port: process.env.PORT || 3000
-  // TODO
-    // add db connection info
-    // create config.js.example
-    // add config.js to .gitignore
-    // remove this file from the repo to hide credentials
 }
 
 // check to see if NODE_ENV was set if not, set to dev
