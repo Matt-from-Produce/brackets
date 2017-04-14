@@ -6,8 +6,8 @@
   "author": "Matthew Trager <mtrager20@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "env NODE_ENV='prod' nodemon server.js",
-    "start:dev": "nodemon server.js",
+    "start": "env NODE_ENV='prod' nodemon index.js",
+    "start:dev": "nodemon index.js",
     "prebuild": "rimraf dist",
     "build": "webpack -p --env.prod",
     "prebuild:dev": "rimraf dist",
