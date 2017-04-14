@@ -1,12 +1,9 @@
 var express = require('express') // express!
-var api = require('./api/api')
 // TODO setup global error handling
-
-// var bodyParser = require('body-parser') // 3rd party middlware!
 var path = require('path') // built-in middleware! (comes w/ node)
-// var morgan = require('morgan') // 3rd party middleware!
-// var _ = require('lodash') // 3rd party middleware!
-// var PORT = 3000 // the port we will host on
+
+// create the api
+var api = require('./api/api')
 
 // make app
 var app = express()
@@ -17,6 +14,9 @@ require('./middleware/appMiddleware')(app)
 // get the api
 app.use('/api', api)
 
+
+// TODO somehow extrapolate this elsewhere? we should only get the app if we want it?
+// because this is specifically the web app?
 // serve from brackets folder and it will default to index on get '/'
 app.use(express.static('brackets'))
 
