@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Profile = React.createClass({
+class Profile extends React.Component {
   render () {
     return (
       <div>
@@ -10,6 +10,6 @@ const Profile = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Profile

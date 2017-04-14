@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Landing = React.createClass({
+class Landing extends React.Component {
   render () {
     return (
       <div className='landing'>
@@ -14,6 +14,6 @@ const Landing = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Landing

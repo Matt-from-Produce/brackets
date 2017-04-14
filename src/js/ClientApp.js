@@ -7,7 +7,7 @@ import {
 import Landing from './Landing'
 import Profile from './Profile'
 
-const App = React.createClass({
+class App extends React.Component {
   render () {
     return (
       <Router>
@@ -18,6 +18,6 @@ const App = React.createClass({
       </Router>
     )
   }
-})
+}
 
 render(<App />, document.getElementById('app'))
