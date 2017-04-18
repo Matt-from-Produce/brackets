@@ -3,6 +3,10 @@ var express = require('express') // express!
 var path = require('path') // built-in middleware! (comes w/ node)
 var mongoose = require('mongoose')
 
+// change promise library of mongoose to bluebird
+mongoose.Promise = require('bluebird')
+
+
 // create the api
 var api = require('./api/api')
 
