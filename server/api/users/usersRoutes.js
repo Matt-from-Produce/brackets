@@ -2,14 +2,14 @@ var router = require('express').Router()
 var logger = require('../../utils/logger')
 var controller = require('./usersController')
 
-// gotta have this up top
-// what happens when theres no id?
+// if id was passed, run params
 router.param('id', controller.params)
 
-// boilerplate
+// root
 router.route('/')
   .get(controller.get)
 
+// root w/ id
 router.route('/:id')
   .get(controller.getOne)
   .put(controller.put)

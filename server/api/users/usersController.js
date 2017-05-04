@@ -2,74 +2,80 @@ var User = require('./usersModel')
 var logger = require('../../utils/logger')
 var _ = require('lodash')
 
-module.exports = {
-  // i think params sets up the object for the REST / CRUD operations
-  // but when I want an array?
-  // if I want one, use params?
-  // if I want one or more, use get?
+// NOTE this is heavily commented for learning purposes
 
-  // make create, update, and delete
-  // and getOne
-  params: function (err, req, res, next, id) { // NOTE what the fuck is params
-    var promise = User.findById(id).exec()
-    promise
-    .then(function(user) {
+module.exports = {
+  // params is hit when an id is passed
+  params: function (req, res, next, id) {
+    var promise = User.findById(id).exec() // save promise
+    promise.then(function(user) { // got response from db
       if (!user) {
-        next(new Error('didnt find that user'))
-      } else {
-        logger.log('got a user!!!!')
+        next(new Error('Didn\'t find that user'))
+      } else { // found user
         logger.log(user)
         req.user = user // attach the user to the current req object (and continue down this stack)
-        next() // next!!! could be a CRUD op
+        next() // call next, could be CRUD op
       }
     })
     .catch(function(err) {
-      next(err) // all next with the error and it will bubble up?
+      logger.log('ERORRROr')
+      logger.log(next)
+      next(err) // call next with the error and it will bubble up
     })
   },
+  // get is hit when getting all or many
   get: function(req, res, next) {
     var promise = User.find().exec()
-    promise
-    .then(function(users){
+    promise.then(function(users){
       if (!users) {
-        next(new Error('didnt find any users'))
+        next(new Error('Didn\'t find any users'))
       } else {
-        //logger.log('got users!')
-        logger.log(users)
+        logger.log('hello from get, calling next')
         res.json = users // attach response
-        next() // next!
+        next() // call next, could be CRUD op
       }
     })
     .catch(function(err) {
-      next(err) // pass error
+      next(err) // pass error up
     })
   },
   getOne: function(req, res, next) {
-    res.json = req.user // def already have from params
+    res.json = req.user // already have from params
+    logger.log('hello from getOne')
+    next() // call next
+  },
+  post: function(req, res, next) {
+    var newUser = req.body // get user
+    var promise = User.create(newUser)
+    promise.then(function(user) { // created user
+      res.json(user) // send back
+      next()
+    })
+    .catch(function(err) {
+      next(err) // send error
+    })
   },
   put: function(req, res, next) {
     var user = req.user // grab the user from this current request (params)
     var update = req.body // grab what was sent to us, which is inside req.body
+    _.merge(user, update) // lodash merge the two together, store result in user
 
-    // lodash merge?
-    _.merge(user, update)
+    var promise = user.save().exec() // save the updated user to db, capture that promise
 
-    var promise = user.save().exec()
-    promise
-    .then(function(saved) { // this will give us what was saved
+    promise.then(function(saved) { // on save
       res.json = saved // send the user back
-      next() // next!
+      next() // call next
     })
-    .catch(function(err) {
+    .catch(function(err) { // on error
       next(err) // pass the error
     })
   },
   delete: function(req, res, next) {
-    var user = req.user
-    var promise = user.remove().exec()
-    promise
-    .then(function(deleted) {
-      res.json = deleted
+    var user = req.user // get from params
+    var promise = user.remove().exec() // save the promise
+    promise.then(function(deleted) { // on delete
+      res.json = deleted // return what was deleted
+      next() // call next
     })
     .catch(function(err) {
       next(err)

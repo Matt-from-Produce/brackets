@@ -1,19 +1,3 @@
-/*
-
-Schema for users
-
-basically just your basic info
-plus:
-  gamesPlayed and wins to calculate win ratio
-  anything else I think of
-
-*/
-
-// win ratio as a virtual?
-// do i even USE VIRUTALS!@#?
-
-// test required things
-
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
