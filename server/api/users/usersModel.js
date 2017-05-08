@@ -4,19 +4,19 @@ var Schema = mongoose.Schema
 var UserSchema = new Schema({
   created_at: {
     type: Date,
-    required: true // need a created_at
+    required: true
   },
   name: {
     type: String,
-    required: true // need a name
+    required: true
   },
   email: {
     type: String,
-    required: true, // need an email
-    unique: true // must be a unique as well
+    required: true,
+    unique: true
   },
-  gamesPlayed: Number, // not required
-  wins: Number // not required
+  gamesPlayed: Number,
+  wins: Number
 })
 
 var User = mongoose.model('User', UserSchema)

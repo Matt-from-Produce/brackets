@@ -1,6 +1,6 @@
-var express = require('express') // express!
+var express = require('express')
 // TODO setup global error handling
-var path = require('path') // built-in middleware! (comes w/ node)
+var path = require('path') // built-in middleware
 var mongoose = require('mongoose')
 
 // change promise library of mongoose to bluebird
@@ -18,7 +18,7 @@ require('./middleware/appMiddleware')(app)
 // get the api
 app.use('/api', api)
 
-// serve assets
+// serve static assets
 app.use(express.static('brackets'))
 
 // send index.html on GET request to '/'

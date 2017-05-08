@@ -1,51 +1,45 @@
-/*
-
-Schema for the Brackets
-
-*/
-
-// TODO seating rankings virtual?
-  // use win ratio of all players to affect the initial seatings
-
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var User = require('../users/usersModel')
 
+// TODO seating rankings virtual?
+  // use win ratio of all players to affect the initial seatings
+
 var BracketSchema = new Schema({
   created_at: {
     type: Date,
-    required: true // need
+    required: true
   },
   name: {
     type: String,
-    required: true // need
+    required: true
   },
-  matches: [{ // dont need
-    users: [{ // dont need
+  matches: [{
+    users: [{
       type: Schema.Types.ObjectId,
       ref: 'User'
     }],
-    victor: { // dont need
+    victor: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }
   }],
-  created_by: { // need created_by
+  created_by: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  admins: [{ // must have at least one admin?
+  admins: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   }],
-  users: [{ // must have at least one user
+  users: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   }],
-  victor: { // dont need
+  victor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }

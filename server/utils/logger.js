@@ -2,11 +2,11 @@
 var config = require('../config/config')
 var _ = require('lodash')
 
-// create a noop function for when loggin is disabled
+// create a noop function for when logging is disabled
 // noop = no operation
 var noop = function(){}
 
-// check if logging is enabled in the config
+// bind if enabled, noop if disabled
 var consoleLog = config.logging ? console.log.bind(console) : noop
 
 var logger = {
@@ -15,8 +15,7 @@ var logger = {
     var args = _.toArray(arguments)
     .map(function(arg) {
       if (typeof arg === 'object') {
-        // turn the object into a string so we can log all properties
-        // with colors!
+        // turn the object into a string so we can log all properties w/ colors
         var string = JSON.stringify(arg, 2)
         return string
       } else {
