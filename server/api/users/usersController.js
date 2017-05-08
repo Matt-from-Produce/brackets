@@ -31,7 +31,7 @@ module.exports = {
         next(new Error('Didn\'t find any users'))
       } else {
         logger.log('hello from get, calling next')
-        res.json = users // attach response
+        res.json(users)// attach response
         next() // call next, could be CRUD op
       }
     })
@@ -40,7 +40,7 @@ module.exports = {
     })
   },
   getOne: function(req, res, next) {
-    res.json = req.user // already have from params
+    res.json(req.user)
     logger.log('hello from getOne')
     next() // call next
   },
@@ -63,7 +63,7 @@ module.exports = {
     var promise = user.save().exec() // save the updated user to db, capture that promise
 
     promise.then(function(saved) { // on save
-      res.json = saved // send the user back
+      res.json(saved) // send the user back
       next() // call next
     })
     .catch(function(err) { // on error
@@ -74,7 +74,7 @@ module.exports = {
     var user = req.user // get from params
     var promise = user.remove().exec() // save the promise
     promise.then(function(deleted) { // on delete
-      res.json = deleted // return what was deleted
+      res.json(deleted) // return what was deleted
       next() // call next
     })
     .catch(function(err) {
