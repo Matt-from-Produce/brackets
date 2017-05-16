@@ -8,6 +8,7 @@ mongoose.Promise = require('bluebird')
 
 // create the api
 var api = require('./api/api')
+var auth = require('./auth/routes')
 
 // make app
 var app = express()
@@ -15,8 +16,9 @@ var app = express()
 // setup the app middleware
 require('./middleware/appMiddleware')(app)
 
-// get the api
+// get the api and auth
 app.use('/api', api)
+app.use('/auth', auth)
 
 // serve static assets
 app.use(express.static('brackets'))

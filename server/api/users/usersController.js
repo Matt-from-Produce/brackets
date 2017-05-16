@@ -2,11 +2,14 @@ var User = require('./usersModel')
 var logger = require('../../utils/logger')
 var _ = require('lodash')
 
-// NOTE this is heavily commented for learning purposes
-
 module.exports = {
   // params is hit when an id is passed
   params: function (req, res, next, id) {
+
+    // TODO
+    // remove
+    // dont need to do this anymore because of auth
+    
     var promise = User.findById(id).exec() // save promise
     promise.then(function(user) { // got response from db
       if (!user) {
@@ -46,6 +49,8 @@ module.exports = {
   },
   post: function(req, res, next) {
     var newUser = req.body // get user
+    newUser.created_at = new Date() // set created_at to now
+    // save the user
     var promise = User.create(newUser)
     promise.then(function(user) { // created user
       res.json(user) // send back

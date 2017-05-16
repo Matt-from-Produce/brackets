@@ -1,4 +1,4 @@
-// this is Scott Moss's logger wrapper
+// this is Scott Moss's console.log wrapper
 var config = require('../config/config')
 var _ = require('lodash')
 

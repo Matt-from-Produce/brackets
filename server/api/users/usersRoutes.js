@@ -7,10 +7,7 @@ router.param('id', controller.params)
 
 // root
 router.route('/')
-  .get(controller.get, function(req,res,next) {
-    logger.log(res.json)
-    next()
-  })
+  .get(controller.get)
   .post(controller.post)
 
 // root w/ id
