@@ -63,11 +63,14 @@ module.exports = {
       })
     }
   },
-  signToken: function(id) {
-    return jwt.sign(
-      {_id: id},
-      config.secrets.jwt,
-      {expiresIn: config.expireTime}
+  signToken: function(user) {
+    return jwt.sign({
+      sub: user._id,
+      email: user.email,
+      name: user.name
+      }, config.secrets.jwt, {
+        expiresIn: config.expireTime
+      }
     )
   }
 }
