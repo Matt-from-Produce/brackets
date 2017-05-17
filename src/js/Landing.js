@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LoginForm from './LoginForm'
 
 class Landing extends React.Component {
   render () {
@@ -9,8 +10,7 @@ class Landing extends React.Component {
         <p>
           <Link to='/profile'>Profile</Link>
         </p>
-        <input type='text' placeholder='username' />
-        <input type='button' value='press' />
+        <LoginForm />
       </div>
     )
   }
