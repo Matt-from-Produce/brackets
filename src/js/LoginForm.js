@@ -1,11 +1,5 @@
 import React from 'react'
 
-// TODO
-/*
-  because this component doesn't care about anything anywhere
-  we can make it a stateless functional component
-*/
-
 class LoginForm extends React.Component {
   constructor (props) {
     super(props)
@@ -16,17 +10,15 @@ class LoginForm extends React.Component {
       password: ''
     }
 
-    this.handlePassChange = this.handlePassChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handlePassChange (event) {
-    this.setState({password: event.target.value})
-  }
+  handleInputChange (event) {
+    const name = event.target.name
+    const value = event.target.value
 
-  handleEmailChange (event) {
-    this.setState({email: event.target.value})
+    this.setState({[name]: value})
   }
 
   handleSubmit (event) {
@@ -46,8 +38,8 @@ class LoginForm extends React.Component {
     return (
       <div className='loginForm'>
         <form onSubmit={this.handleSubmit}>
-          <input type='text' placeholder='email' value={this.state.email} onChange={this.handleEmailChange} />
-          <input type='password' placeholder='password' value={this.state.password} onChange={this.handlePassChange} />
+          <input type='text' name='email' placeholder='email' value={this.state.email} onChange={this.handleInputChange} />
+          <input type='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleInputChange} />
           <input type='submit' value='Login' />
         </form>
       </div>
