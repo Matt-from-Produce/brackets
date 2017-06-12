@@ -36,7 +36,7 @@ module.exports = {
     return function(req, res, next) {
       var email = req.body.email
       var password = req.body.password
-
+      console.log(req.body)
       if (!email || !password) {
         res.status(400).send('Email or Password missing')
         return
@@ -47,13 +47,17 @@ module.exports = {
         if (!user) {
           // TODO maybe handle this differently
           res.status(401).send('Did not find a user with that email')
+          console.log('didnt get a user')
         } else {
+          console.log('found user')
           // check the password now
           if (user.authenticate(password)) {
             // success!
             req.user = user
+            console.log('authenticated')
             next()
           } else if (!user.authenticate(password)) {
+            console.log('wrong password')
             res.status(401).send('Incorrect password')
           }
         }

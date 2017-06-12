@@ -1,23 +1,36 @@
 import React from 'react'
+import T from 'prop-types'
+import AuthService from '../utils/AuthService'
+// import { post } from 'axios'
 
 class LoginForm extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor (context) {
+    super()
+
+    console.log(this.props)
 
     // initialize state
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      loggedIn: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleInputChange (event) {
-    const name = event.target.name
-    const value = event.target.value
+  static contextTypes = {
+    router: T.object
+  }
 
+  static propTypes = {
+    // loggedIn: T.bool,
+    auth: T.instanceOf(AuthService)
+  }
+
+  handleInputChange (event) {
+    const { name, value } = event.target
     this.setState({[name]: value})
   }
 
@@ -25,13 +38,23 @@ class LoginForm extends React.Component {
     event.preventDefault()
 
     // TODO check inputs against business rules for login info
+    const { email, password } = this.state
 
-    // TODO send these things to server
-
-    // TODO if you check out, save the JWT you should be getting back
-
-    console.log(this.state.email)
-    console.log(this.state.password)
+    // send credentials to server to get token
+    if (email && password) {
+      this.props.auth.login(email, password)
+      .then((res) => {
+        if (!res.token) {
+          console.log(res.message)
+        } else {
+          this.props.auth.finishAuthentication(res.token)
+          this.setState({loggedIn: true})
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
   }
 
   render () {

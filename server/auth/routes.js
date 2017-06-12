@@ -3,6 +3,6 @@ var controller = require('./controller')
 var verifyUser = require('./auth').verifyUser
 
 // TODO add the verifyUser middleware here
-router.post('/signin', verifyUser(), controller.signin)
+router.post('/login', verifyUser(), controller.login)
 
 module.exports = router

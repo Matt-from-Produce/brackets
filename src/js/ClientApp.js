@@ -6,17 +6,13 @@ import {
 import Landing from './Landing'
 import Profile from './Profile'
 
-class App extends React.Component {
-  render () {
-    return (
-      <Router>
-        <div className='app'>
-          <Route exact path='/' component={Landing} />
-          <Route path='/profile' component={Profile} />
-        </div>
-      </Router>
-    )
-  }
-}
+const App = () => (
+  <Router>
+    <div className='app'>
+      <Route exact path='/' component={Landing} />
+      <Route path='/profile' component={Profile} />
+    </div>
+  </Router>
+)
 
 render(<App />, document.getElementById('app'))

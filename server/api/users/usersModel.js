@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcrypt-nodejs')
 var Schema = mongoose.Schema
 
 var UserSchema = new Schema({
@@ -33,6 +33,8 @@ UserSchema.pre('save', function(next) {
 // these are used on the INSTANCE of a User (ie: req.user can call these methods)
 UserSchema.methods = {
   authenticate: function(plainTextPassword) {
+    console.log(this);
+    console.log(plainTextPassword);
     return bcrypt.compareSync(plainTextPassword, this.password) // this refers to this instance of the user
   },
   encryptPassword: function(plainTextPassword) {
