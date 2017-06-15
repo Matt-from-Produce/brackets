@@ -9,7 +9,7 @@ module.exports = {
     // TODO
     // remove
     // dont need to do this anymore because of auth
-    
+
     var promise = User.findById(id).exec() // save promise
     promise.then(function(user) { // got response from db
       if (!user) {
@@ -48,15 +48,19 @@ module.exports = {
     next() // call next
   },
   post: function(req, res, next) {
+    console.log('in post')
+    console.log(req.body)
     var newUser = req.body // get user
     newUser.created_at = new Date() // set created_at to now
     // save the user
     var promise = User.create(newUser)
     promise.then(function(user) { // created user
+      console.log('created a user')
       res.json(user) // send back
       next()
     })
     .catch(function(err) {
+      console.log('hit error in post')
       next(err) // send error
     })
   },

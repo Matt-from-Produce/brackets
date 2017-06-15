@@ -1,9 +1,8 @@
 import { EventEmitter } from 'events'
 import { isTokenExpired } from './jwtHelper'
-// import { browserHistory } from 'react-router'
 // import jwtDecode from 'jwt-decode'
 
-import { AUTH_URL } from './constants'
+import { AUTH_URL, API_URL } from './constants'
 
 export default class AuthService extends EventEmitter {
   constructor () {
@@ -24,9 +23,16 @@ export default class AuthService extends EventEmitter {
     return this._doAuthentication('login', { email, password })
   }
 
-  // signup (email, password) {
-  //   // TODO
-  // }
+  signup (user) {
+    return this.fetch(`${API_URL}/users/`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+  }
 
   isAuthenticated () {
     // checks if there is a saved token and if it's still valid
@@ -88,8 +94,6 @@ export default class AuthService extends EventEmitter {
     if (this.isAuthenticated()) {
       headers['Authorization'] = 'Bearer ' + this.getToken()
     }
-
-    console.log(headers)
 
     return fetch(url, {
       headers,

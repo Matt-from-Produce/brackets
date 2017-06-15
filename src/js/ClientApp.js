@@ -1,18 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
-import {
-  BrowserRouter as Router,
-  Route } from 'react-router-dom'
-import Landing from './Landing'
-import Profile from './Profile'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
 
-const App = () => (
-  <Router>
-    <div className='app'>
-      <Route exact path='/' component={Landing} />
-      <Route path='/profile' component={Profile} />
-    </div>
-  </Router>
-)
+const renderApp = () => {
+  render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('app'))
+}
 
-render(<App />, document.getElementById('app'))
+renderApp()
