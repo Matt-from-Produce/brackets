@@ -12,7 +12,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      loggedIn: props.auth.isAuthenticated()
+      loggedIn: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -28,11 +28,17 @@ class LoginForm extends Component {
     auth: T.instanceOf(AuthService)
   }
 
-  componentWillMount () {
-    console.log('loginform mounting')
+  componentDidMount () {
+    console.log('loginform mounted')
+    // TODO
+    // this is guaranteed to not run on node
+    // like we have access to window and the whole DOM here
+    this.setState({loggedIn: this.props.auth.isAuthenticated()})
   }
 
   componentWillUnmount () {
+    // right before component leaves DOM
+    // cleanup maybe if needed but i dont think i do
     console.log('loginform unmounting')
   }
 
