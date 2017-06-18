@@ -5,26 +5,14 @@ import T from 'prop-types'
 class SignUpForm extends Component {
   constructor (props) {
     super(props)
-    console.log('hello from constructor')
     this.state = {
       name: '',
       email: '',
       password1: '',
-      password2: '',
-      buenoName: false,
-      buenoEmail: false,
-      buenoPw1: false,
-      buenoPw2: false,
-      buenoMatch: false,
-      message: 'sec',
-      conditions: 0,
-      bueno: false
+      password2: ''
     }
 
-    this.handlePassword1Change = this.handlePassword1Change.bind(this)
-    this.handlePassword2Change = this.handlePassword2Change.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -36,93 +24,15 @@ class SignUpForm extends Component {
     auth: T.instanceOf(AuthService)
   }
 
-  componentWillMount () {
-    console.log('signup mounting')
-  }
-
-  componentWillUnmount () {
-    console.log('signup unmounting')
-  }
-
-  handleNameChange (event) {
-    event.preventDefault()
-    const name = event.target.value
-    this.setState({name: name})
-
-    // names must be at least two alphabetical letters and not too long
-    if (name.length > 1 && name.length < 15) {
-      this.setState({buenoName: true})
-    } else {
-      this.setState({buenoName: false})
-    }
-
-    this.checkBueno()
-  }
-
-  handleEmailChange (event) {
-    event.preventDefault()
-    const email = event.target.value
-    this.setState({email: email})
-
-    // TODO -- email regex
-    if (email.length > 4 && email.length < 25) {
-      this.setState({buenoEmail: true})
-    } else {
-      this.setState({buenoEmail: false})
-    }
-
-    this.checkBueno()
-  }
-
-  handlePassword1Change (event) {
-    event.preventDefault()
-    const pw1 = event.target.value
-    this.setState({password1: pw1})
-
-    // more than 5 but not too long
-    if (pw1.length > 5 && pw1.length < 13) {
-      this.setState({buenoPw1: true})
-    } else {
-      this.setState({buenoPw1: false})
-    }
-
-    this.checkBueno()
-  }
-
-  handlePassword2Change (event) {
-    event.preventDefault()
-    const pw2 = event.target.value
-    this.setState({password2: pw2})
-
-    // more than 5 but not too long
-    if (pw2.length > 5 && pw2.length < 13) {
-      this.setState({buenoPw2: true})
-    } else {
-      this.setState({buenoPw2: false})
-    }
-
-    this.checkBueno()
-  }
-
-  checkBueno () {
-    const { buenoName, buenoEmail, buenoPw1, buenoPw2 } = this.state
-    if (buenoName && buenoEmail && buenoPw1 && buenoPw2) {
-      console.log('bueno')
-      this.setState({message: 'bueno'})
-      this.setState({bueno: true})
-    } else {
-      console.log('no bueno')
-      this.setState({message: 'no bueno'})
-      this.setState({bueno: false})
-    }
+  handleInputChange (event) {
+    const { name, value } = event.target
+    this.setState({[name]: value})
   }
 
   handleSubmit (event) {
-    console.log('hello from handleSubmit')
     event.preventDefault()
 
-    if ((this.state.password1 === this.state.password2) && this.state.bueno) {
-      this.setState({message: 'creating account'})
+    if (this.bueno()) {
       const { auth } = this.props
       const s = this.state
       const user = {
@@ -139,50 +49,98 @@ class SignUpForm extends Component {
         console.log('error creating user?')
         console.log(err)
       })
-    } else {
-      this.setState({message: 'poo input'})
     }
   }
 
+  checkName (name) {
+    return name.length > 1 && name.length < 20
+  }
+
+  checkEmail (email) {
+    const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    return email.match(emailRegex)
+  }
+
+  checkPassword (pw) {
+    return pw.length > 5 && pw.length < 20
+  }
+
+  checkPasswordMatch (pw1, pw2) {
+    return pw1 === pw2
+  }
+
+  bueno () {
+    const { name, email, password1, password2 } = this.state
+    return (
+      this.checkName(name) &&
+      this.checkEmail(email) &&
+      this.checkPassword(password1) &&
+      this.checkPassword(password2) &&
+      this.checkPasswordMatch(password1, password2)
+    )
+  }
+
   render () {
-    console.log('hello from render')
+    let bueno = this.bueno()
+    let output = ''
+    if (!bueno) {
+      output = 'no bueno'
+    } else {
+      output = 'bueno'
+    }
+
     return (
       <div className='SignUpForm'>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            name='name'
-            placeholder='Enter your name'
-            value={this.state.name}
-            onChange={this.handleNameChange}
-          />
-          <input
-            type='text'
-            name='email'
-            placeholder='email'
-            value={this.state.email}
-            onChange={this.handleEmailChange}
-          />
-          <input
-            type='password'
-            name='password1'
-            placeholder='Choose password'
-            value={this.state.password}
-            onChange={this.handlePassword1Change}
-          />
-          <input
-            type='password'
-            name='password2'
-            placeholder='Confirm password'
-            value={this.state.password2}
-            onChange={this.handlePassword2Change}
-          />
-          <input
-            type='submit'
-            value='Submit'
-          />
+          <div>
+            <label>Name</label>
+            <input
+              type='text'
+              name='name'
+              placeholder='Enter your name'
+              value={this.state.name}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              type='text'
+              name='email'
+              placeholder='Enter your email'
+              value={this.state.email}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type='password'
+              name='password1'
+              placeholder='Enter your password'
+              value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input
+              type='password'
+              name='password2'
+              placeholder='Confirm your password'
+              value={this.state.password2}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <input
+              type='submit'
+              value='Submit'
+              disabled={!bueno}
+            />
+          </div>
         </form>
-        <h3>Status: {this.state.message}</h3>
+        <h3>Status: {output}</h3>
       </div>
     )
   }
