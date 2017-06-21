@@ -6,7 +6,7 @@ Node+Express to serve it up, making use of its advantages for SPAs and implement
 
 MongoDB to store data.
 
-React as the frontend framework. I am intentionally not using Redux as it adds complexity that I do not need (yet, maybe). I chose to use the 'styled-components' library to introduce CSS into the project (it seems to follow the "react way" of keeping all code pertaining to a component in one file).
+React as the frontend framework. I am intentionally not using Redux as it adds complexity that I do not need (yet, maybe). I chose to use the 'styled-components' library to introduce CSS into the project.
 
 Webpack to bundle up my modules and for the amazing webpack-dev-server.
 
