@@ -4,6 +4,17 @@ import React, { Component } from 'react'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import AuthService from '../utils/AuthService'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  max-width: 600px;
+  padding: 20px;
+`
+
+const Title = styled.h1`
+  display: block;
+  text-align: center;
+`
 
 class Landing extends Component {
   constructor (props) {
@@ -36,11 +47,11 @@ class Landing extends Component {
     }
 
     return (
-      <div className='landing'>
-        <h1>brackets</h1>
+      <Wrapper>
+        <Title>brackets</Title>
         {form}
         {button}
-      </div>
+      </Wrapper>
     )
   }
 }

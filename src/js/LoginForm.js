@@ -1,8 +1,38 @@
 import React, { Component } from 'react'
 import T from 'prop-types'
 import AuthService from '../utils/AuthService'
+import styled from 'styled-components'
 // import { browserHistory } from 'react-router'
 // import { post } from 'axios'
+
+const Wrapper = styled.div`
+  margin: auto;
+`
+
+const FormField = styled.div`
+  display: block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+`
+
+const Label = styled.label`
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+`
+
+const Input = styled.input`
+  border: none;
+  padding: 0.5em;
+  color: black;
+  background-color: lightcyan;
+`
+
+const InputButton = styled.input`
+  padding-top: 1em;
+  padding-bottom: 1em;
+`
 
 class LoginForm extends Component {
   constructor (props) {
@@ -12,7 +42,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      loggedIn: false
+      loggedIn: false // TODO remove. this is a reflection of the prop 'auth' maybe?
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -29,17 +59,7 @@ class LoginForm extends Component {
   }
 
   componentDidMount () {
-    console.log('loginform mounted')
-    // TODO
-    // this is guaranteed to not run on node
-    // like we have access to window and the whole DOM here
     this.setState({loggedIn: this.props.auth.isAuthenticated()})
-  }
-
-  componentWillUnmount () {
-    // right before component leaves DOM
-    // cleanup maybe if needed but i dont think i do
-    console.log('loginform unmounting')
   }
 
   handleInputChange (event) {
@@ -92,13 +112,33 @@ class LoginForm extends Component {
     }
 
     return (
-      <div className='loginForm'>
+      <Wrapper>
         <form onSubmit={this.handleLogin}>
-          <input type='text' name='email' placeholder='email' value={this.state.email} onChange={this.handleInputChange} />
-          <input type='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleInputChange} />
-          <input type='submit' value='Login' />
+          <FormField>
+            <Label>Email</Label>
+            <Input
+              type='text'
+              name='email'
+              placeholder='Enter your email'
+              value={this.state.email}
+              onChange={this.handleInputChange} />
+          </FormField>
+          <FormField>
+            <Label>Password</Label>
+            <Input
+              type='password'
+              name='password'
+              placeholder='Enter your password'
+              value={this.state.password}
+              onChange={this.handleInputChange} />
+          </FormField>
+          <FormField>
+            <InputButton
+              type='submit'
+              value='Login' />
+          </FormField>
         </form>
-      </div>
+      </Wrapper>
     )
   }
 }

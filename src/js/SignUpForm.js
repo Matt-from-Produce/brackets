@@ -2,6 +2,38 @@ import React, { Component } from 'react'
 import AuthService from '../utils/AuthService'
 import { emailRegex } from '../utils/constants'
 import T from 'prop-types'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  margin: auto;
+`
+
+const FormField = styled.div`
+  display: block;
+  padding-top: 1em;
+`
+
+const Label = styled.label`
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+`
+
+const Input = styled.input`
+  border: none;
+  padding: 0.5em;
+  color: black;
+  background-color: lightcyan;
+`
+
+const InputButton = styled.input`
+  padding-top: 10px;
+`
+
+const Bueno = styled.h3`
+  font-weight: bold;
+`
 
 class SignUpForm extends Component {
   constructor (props) {
@@ -82,66 +114,61 @@ class SignUpForm extends Component {
 
   render () {
     let bueno = this.bueno()
-    let output = ''
-    if (!bueno) {
-      output = 'no bueno'
-    } else {
-      output = 'bueno'
-    }
+    let output = bueno ? 'bueno, good form' : 'no bueno, bad form'
 
     return (
-      <div className='SignUpForm'>
+      <Wrapper>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Name</label>
-            <input
+          <FormField>
+            <Label>Name</Label>
+            <Input
               type='text'
               name='name'
               placeholder='Enter your name'
               value={this.state.name}
               onChange={this.handleInputChange}
             />
-          </div>
-          <div>
-            <label>Email</label>
-            <input
+          </FormField>
+          <FormField>
+            <Label>Email</Label>
+            <Input
               type='text'
               name='email'
               placeholder='Enter your email'
               value={this.state.email}
               onChange={this.handleInputChange}
             />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
+          </FormField>
+          <FormField>
+            <Label>Password</Label>
+            <Input
               type='password'
               name='password1'
               placeholder='Enter your password'
               value={this.state.password}
               onChange={this.handleInputChange}
             />
-          </div>
-          <div>
-            <label>Confirm Password</label>
-            <input
+          </FormField>
+          <FormField>
+            <Label>Confirm Password</Label>
+            <Input
               type='password'
               name='password2'
               placeholder='Confirm your password'
               value={this.state.password2}
               onChange={this.handleInputChange}
             />
-          </div>
-          <div>
-            <input
+          </FormField>
+          <FormField>
+            <InputButton
               type='submit'
               value='Submit'
               disabled={!bueno}
             />
-          </div>
+          </FormField>
         </form>
-        <h3>Status: {output}</h3>
-      </div>
+        <Bueno>{output}</Bueno>
+      </Wrapper>
     )
   }
 }
