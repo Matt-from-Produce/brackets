@@ -1,17 +1,17 @@
 # brackets
-Manage a tournament with a straightforward UI that aims to remove all the tediousness of managing such a thing.
+A tournament management single page web application that utilizes the MERN stack, a RESTful API, and isomorphic rendering.
 
 # how?
-Firstly, by using MongoDB to store data. Data can be summed up in two collections, users and brackets.
-
 Node+Express to serve it up, making use of its advantages for SPAs and implementing a RESTful API.
 
-React will be the front. No Redux yet!
+MongoDB to store data.
 
-Webpack to bundle it up. Trying to take advantage of it's "get-your-bundle-as-small-as-physically-possible" abilities.
+React as the frontend framework. I am intentionally not using Redux as it adds complexity that I do not need (yet, maybe). I chose to use the 'styled-components' library to introduce CSS into the project (it seems to follow the "react way" of keeping all code pertaining to a component in one file).
+
+Webpack to bundle up my modules and for the amazing webpack-dev-server.
 
 NPM scripts are used as the build processes, check those out to see what I'm doing.
 
-I'm using the Standard linting rules for esLint with the addition of the react ruleset. But word on the street is that Prettier is very promising and it's on my backlog to migrate (it has a --no-semi flag now).
+I'm using the Standard linting rules for esLint with the addition of the react ruleset.
 
 Still early in development!
