@@ -35,8 +35,9 @@ app.use('/auth', auth)
 // serve static assets
 app.use('/dist', express.static('./dist'))
 
-// send index.html on GET request to '/'
-app.get('/', function(req, res) {
+// serverside rendering
+app.use(function(req, res) {
+  console.log(req.url)
   var context = {}
   var body = ReactDOMServer.renderToString(
     React.createElement(StaticRouter, { location: req.url, context },
