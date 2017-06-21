@@ -20,6 +20,10 @@ const Label = styled.label`
   padding-right: 5px;
 `
 
+const Alert = styled.div`
+  color: red;
+`
+
 const Input = styled.input`
   border: none;
   padding: 0.5em;
@@ -42,7 +46,8 @@ class SignUpForm extends Component {
       name: '',
       email: '',
       password1: '',
-      password2: ''
+      password2: '',
+      emailInUse: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -79,8 +84,7 @@ class SignUpForm extends Component {
         this.context.router.history.push('./main')
       })
       .catch(err => {
-        console.log('error creating user?')
-        console.log(err)
+        if (err) this.setState({emailInUse: true})
       })
     }
   }
@@ -115,6 +119,7 @@ class SignUpForm extends Component {
   render () {
     let bueno = this.bueno()
     let output = bueno ? 'bueno, good form' : 'no bueno, bad form'
+    let emailAlert = this.state.emailInUse ? 'email is in use' : '' // TODO this is ugly?
 
     return (
       <Wrapper>
@@ -130,6 +135,7 @@ class SignUpForm extends Component {
             />
           </FormField>
           <FormField>
+            <Alert>{emailAlert}</Alert>
             <Label>Email</Label>
             <Input
               type='text'

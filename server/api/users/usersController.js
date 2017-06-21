@@ -61,7 +61,8 @@ module.exports = {
     })
     .catch(function(err) {
       console.log('hit error in post')
-      next(err) // send error
+      console.log(err)
+      next(err)
     })
   },
   put: function(req, res, next) {
