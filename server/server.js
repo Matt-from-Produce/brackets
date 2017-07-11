@@ -3,24 +3,15 @@ var express = require('express')
 // TODO setup global error handling
 var path = require('path') // built-in middleware
 var mongoose = require('mongoose')
-var React = require('react')
-var ReactDOMServer = require('react-dom/server')
-var ReactRouter = require('react-router-dom')
-var fs = require('fs')
-var _ = require('lodash')
-var App = require('../src/js/App').default
+
+const isomorphic = require('./isomorphic')
 
 // change promise library of mongoose to bluebird
 mongoose.Promise = require('bluebird')
 
-// create the api
+// create the api and auth
 var api = require('./api/api')
 var auth = require('./auth/routes')
-
-// serverside rendering
-var StaticRouter = ReactRouter.StaticRouter
-var baseTemplate = fs.readFileSync('./index.html') // TODO change to async function maybe
-var template = _.template(baseTemplate)
 
 // make app
 var app = express()
@@ -28,71 +19,22 @@ var app = express()
 // setup the app middleware
 require('./middleware/appMiddleware')(app)
 
+// serve static assets
+app.use(express.static(path.join(__dirname, '../dist/')))
+
 // get the api and auth
 app.use('/api', api)
 app.use('/auth', auth)
 
-// serve static assets
-app.use(express.static('brackets'))
-//
-// app.use((req, res) => {
-//   var context = {}
-//   var body = ReactDOMServer.renderToString(
-//     React.createElement(StaticRouter, { location: req.url, context },
-//       React.createElement(App)
-//     )
-//   )
-//
-//   if (context.url) {
-//     // TODO if there is a redirect
-//   }
-//
-//   res.write(template({body: body}))
-//   res.end()
-// })
+// serverside rendering
+// TODO
+/*
 
-// send index.html on GET request to '/'
-app.get('/', function(req, res) {
-  var context = {}
-  var body = ReactDOMServer.renderToString(
-    React.createElement(StaticRouter, { location: req.url, context },
-      React.createElement(App)
-    )
-  )
+hey if you're not one of my clientside routes, dont run this function
+that means i've got to put a check in for all the routes i have on the client
+or is there a more elegant way of handling that?
 
-  if (context.url) {
-    // TODO if there is a redirect
-  }
-
-  res.write(template({body: body}))
-  res.end()
-})
-
-// // send index.html on GET request to '/'
-// app.get('/', function(req, res) {
-//   res.sendFile(path.resolve('index.html'), function(err) {
-//     if (err) {
-//       res.status(500).send(err)
-//     }
-//   })
-// })
-
-// give the bundle when its requested
-app.get('/dist/bundle.js', function(req, res) {
-  res.sendFile(path.resolve('dist/bundle.js'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
-// give the source-map when its requested
-app.get('/dist/bundle.js.map', function(req, res) {
-  res.sendFile(path.resolve('dist/bundle.js.map'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+*/
+app.use(isomorphic)
 
 module.exports = app
