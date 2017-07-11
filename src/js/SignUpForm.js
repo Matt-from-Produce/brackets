@@ -49,7 +49,6 @@ class SignUpForm extends Component {
       password2: '',
       emailInUse: false
     }
-
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
