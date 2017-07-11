@@ -3,6 +3,6 @@ A tournament management single page web application that utilizes the MongoDB, E
 
 _WORK IN PROGRESS_
 
-# how to install
+## how to install
 
 **TODO**
