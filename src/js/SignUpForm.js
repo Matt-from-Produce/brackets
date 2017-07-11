@@ -44,7 +44,6 @@ class SignUpForm extends Component {
       password1: '',
       password2: ''
     }
-
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -80,6 +79,7 @@ class SignUpForm extends Component {
       })
       .catch(err => {
         console.log('error creating user?')
+        // TODO was email in use?
         console.log(err)
       })
     }
@@ -130,6 +130,7 @@ class SignUpForm extends Component {
             />
           </FormField>
           <FormField>
+            {/* <p>{emailAlert}</p> */}
             <Label>Email</Label>
             <Input
               type='text'
