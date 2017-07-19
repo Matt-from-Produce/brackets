@@ -27,29 +27,4 @@ const isomorphic = (req, res, next) => {
   res.end()
 }
 
-function isomorphic2() {
-  return function(req, res, next) {
-    if (req.url !== '/') {
-      console.log('hit not root')
-      next()
-    } else {
-      var context = {}
-      var body = ReactDOMServer.renderToString(
-        React.createElement(StaticRouter, { location: req.url, context },
-          React.createElement(App)
-        )
-      )
-
-      console.log('bitch?');
-
-      if (context.url) {
-        // TODO if there is a redirect
-      }
-
-      res.write(template({body: body}))
-      res.end()
-    }
-  }
-}
-
 module.exports = isomorphic
