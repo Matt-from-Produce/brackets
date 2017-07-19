@@ -19,8 +19,6 @@ const isomorphic = (req, res, next) => {
     )
   )
 
-  console.log('bitch?');
-
   if (context.url) {
     // TODO if there is a redirect
   }
