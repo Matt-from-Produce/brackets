@@ -1,0 +1,8 @@
+{
+  "users":
+    [
+      {"_id":"594a7168406b74665bc33ee0","name":"Test","email":"test@test.com","password":"$2a$10$uZ5pj8sODFoQ9KiurEXa3uajYZZhmY/wVu886ZydqlKxuPiJVyeH6","created_at":"2017-06-21T13:15:20.086Z","__v":0},
+      {"_id":"594a7744cca35b6b9f412f14","name":"test","email":"test1@test.com","password":"$2a$10$AoINdhuYT96sOisLpcgM.u6Bcw7pp1c2/zHSuI.VGfkwKjCviQqsC","created_at":"2017-06-21T13:40:20.494Z","__v":0},
+      {"_id":"594a833d3405e473e057f0a1","name":"test3","email":"test2@test.com","password":"$2a$10$f3uGmXrKQqb0u7L8Y7X8PeHyX22Xk.QVtHHVPFhGM8kKrpAuvbR/a","created_at":"2017-06-21T14:31:25.874Z","__v":0}
+    ]
+}
