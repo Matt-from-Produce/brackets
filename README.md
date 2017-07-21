@@ -14,8 +14,11 @@ _WORK IN PROGRESS_
 Node is a Javascript runtime that is built on Google's V8 JS engine and NPM is Node's package manager ecosystem.
 
 These are the versions of Node and NPM I am using:
+
 `node -v` // 8.1.3
+
 `npm -v` // 5.3.0
+
 _should be the latest versions_
 
 If you don't have Node and NPM installed, please visit [the official download page](https://nodejs.org/en/download/).
