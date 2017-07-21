@@ -32,12 +32,15 @@ Run `node -v` and `npm -v` to double check if both were installed after running 
 MongoDB is the most widely used document database, otherwise referred to as a NoSQL or non-relational database.
 
 MongoDB can be installed easily via Homebrew with:
+
 `brew install mongodb`
 
 For non Mac/Homebrew users, please visit [their installation instruction page for your appropriate OS](https://docs.mongodb.com/manual/administration/install-community/).
 
 To make sure MongoDB installed correctly, try running
+
 `mongo --version`
+
 You should get output similar to
 ```
 MongoDB shell version v3.4.3
@@ -50,7 +53,9 @@ build environment:
     target_arch: x86_64
 ```
 And to make sure the daemon installed correctly, try running
+
 `mongod --version`
+
 Which should output something like:
 ```
 db version v3.4.3
