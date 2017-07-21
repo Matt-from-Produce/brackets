@@ -79,3 +79,5 @@ This will launch the [mongo shell](https://docs.mongodb.com/manual/mongo/) and c
 Now that we can connect to mongod via the mongo shell, we can prepare our database!
 
 Before we create our Brackets database, we'll need to create our Admin database so that you can control read/write access.
+
+_todo_
