@@ -5,6 +5,8 @@ _WORK IN PROGRESS_
 
 ## how to install
 
+**NOTE** _In order to work with the API you will need MongoDB installed and set up beforehand which is explained below._
+
 ## Step One
 ### before cloning the repository:
 
@@ -31,5 +33,41 @@ MongoDB can be installed easily via Homebrew with:
 
 For non Mac/Homebrew users, please visit [their installation instruction page for your appropriate OS](https://docs.mongodb.com/manual/administration/install-community/).
 
+To make sure MongoDB installed correctly, try running
+`mongo --version`
+You should get output similar to
+```
+MongoDB shell version v3.4.3
+git version: f07437fb5a6cca07c10bafa78365456eb1d6d5e1
+OpenSSL version: OpenSSL 1.0.2k  26 Jan 2017
+allocator: system
+modules: none
+build environment:
+    distarch: x86_64
+    target_arch: x86_64
+```
+And to make sure the daemon installed correctly, try running
+`mongod --version`
+Which should output something like:
+```
+db version v3.4.3
+git version: f07437fb5a6cca07c10bafa78365456eb1d6d5e1
+OpenSSL version: OpenSSL 1.0.2k  26 Jan 2017
+allocator: system
+modules: none
+build environment:
+    distarch: x86_64
+    target_arch: x86_64
+```
+
+#### test connection to mongod
+Open two new terminal windows. In the first window run the command `mongod`.
+
+Once that process has started and you see `[thread1] waiting for connections on port 27017`, go in your second terminal window and enter the command `mongo`.
+
+This will launch the [mongo shell](https://docs.mongodb.com/manual/mongo/) and connect it to your `mongod` process. You may see warnings such as `** WARNING: Access control is not enabled for the database.` and `** Read and write access to data and configuration is unrestricted.` but don't worry we will be fixing that.
+
 #### preparing the MongoDB database
-Before we get into cloning the repo and trying to run the app, we have to set up the database beforehand. The API server will attempt to connect to the database and if it cannot, it will not work! So this comes first, sorry!
+Now that we can connect to mongod via the mongo shell, we can prepare our database!
+
+Before we create our Brackets database, we'll need to create our Admin database so that you can control read/write access.
