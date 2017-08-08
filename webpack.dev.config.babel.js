@@ -10,7 +10,7 @@ module.exports = env => {
     output: {
       path: resolve('dist'),
       filename: './bundle.js',
-      publicPath: '/dist/'
+      publicPath: 'http://localhost:8080/dist/'
     },
     resolve: {
       extensions: ['.js']
@@ -27,8 +27,7 @@ module.exports = env => {
     module: {
       loaders: [
         {enforce: 'pre', test: /\.js$/, loaders: ['eslint-loader'], exclude: /node_modules/},
-        {test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/},
-        {test: /\.json$/, loaders: ['json-loader'], exclude: /node_modules/}
+        {test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/}
       ]
     }
   }
