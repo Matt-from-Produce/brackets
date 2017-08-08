@@ -3,11 +3,11 @@ A tournament management single page web application that utilizes the MongoDB, E
 
 _WORK IN PROGRESS_
 
-## how to install
+## How to Install
 
 **NOTE** _In order to work with the API you will need MongoDB installed and set up beforehand which is explained below._
 
-## Step One
+## step one
 ### before cloning the repository:
 
 #### Node and NPM
@@ -79,5 +79,3 @@ This will launch the [mongo shell](https://docs.mongodb.com/manual/mongo/) and c
 Now that we can connect to mongod via the mongo shell, we can prepare our database!
 
 Before we create our Brackets database, we'll need to create our Admin database so that you can control read/write access.
-
-_todo_
