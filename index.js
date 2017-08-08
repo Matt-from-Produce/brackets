@@ -36,5 +36,5 @@ if (config.env === 'dev') {
 }
 
 app.listen(config.port, function() {
-  logger.log('listen! http://localhost:' + config.port)
+  logger.log('Node server listening on port ' + config.port)
 })
