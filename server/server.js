@@ -1,10 +1,14 @@
 require('babel-register')
+
+// because we are running inside node
+// we dont have to worry about poluting the global namespace
+
 var express = require('express')
 // TODO setup global error handling
 var path = require('path') // built-in middleware
 var mongoose = require('mongoose')
 
-const isomorphic = require('./isomorphic')
+var isomorphic = require('./isomorphic')
 
 // change promise library of mongoose to bluebird
 mongoose.Promise = require('bluebird')
