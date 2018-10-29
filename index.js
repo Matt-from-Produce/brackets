@@ -7,7 +7,9 @@ var mongoose = require('mongoose')
 var uri = config.uri
 var options = {
   user: config.user,
-  pass: config.pass
+  pass: config.pass,
+  useNewUrlParser: true,
+  useCreateIndex: true
 }
 
 // connect to db
