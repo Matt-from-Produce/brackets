@@ -3,7 +3,7 @@ var expressJwt = require('express-jwt')
 var config = require('../config/config')
 var checkToken = expressJwt({ secret: config.secrets.jwt })
 var User = require('../api/users/usersModel')
-var logger = require('../../utils/logger')
+var logger = require('../utils/logger')
 
 module.exports = {
   decodeToken: function() {
