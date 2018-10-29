@@ -8,8 +8,6 @@ var express = require('express')
 var path = require('path') // built-in middleware
 var mongoose = require('mongoose')
 
-var isomorphic = require('./isomorphic')
-
 // change promise library of mongoose to bluebird
 mongoose.Promise = require('bluebird')
 
@@ -30,15 +28,31 @@ app.use(express.static(path.join(__dirname, '../dist/')))
 app.use('/api', api)
 app.use('/auth', auth)
 
-// serverside rendering
-// TODO
-/*
+// send index.html on GET request to '/'
+app.get('/', function(req, res) {
+  res.sendFile(path.resolve('index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
-hey if you're not one of my clientside routes, dont run this function
-that means i've got to put a check in for all the routes i have on the client
-or is there a more elegant way of handling that?
+// give the bundle when its requested
+app.get('/dist/bundle.js', function(req, res) {
+  res.sendFile(path.resolve('dist/bundle.js'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
-*/
-app.use(isomorphic)
+// give the source-map when its requested
+app.get('/dist/bundle.js.map', function(req, res) {
+  res.sendFile(path.resolve('dist/bundle.js.map'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 module.exports = app
