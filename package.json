@@ -15,7 +15,7 @@
     "prebuild:dev": "rimraf dist",
     "build:dev": "webpack --env.dev --config webpack.config.babel.js",
     "watch:dev": "npm run build:dev -- --watch",
-    "dev": "webpack-dev-server --env.dev --config webpack.dev.config.babel.js",
+    "dev": "webpack-dev-server --env.dev --config webpack.config.babel.js",
     "lint": "eslint src/js/**/*.jsx src/js/**/*.js webpack.config.babel.js",
     "test": "karma start",
     "watch:test": "npm test -- --auto-watch --no-single-run",
