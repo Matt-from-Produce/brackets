@@ -3,6 +3,7 @@ var expressJwt = require('express-jwt')
 var config = require('../config/config')
 var checkToken = expressJwt({ secret: config.secrets.jwt })
 var User = require('../api/users/usersModel')
+var logger = require('../../utils/logger')
 
 module.exports = {
   decodeToken: function() {
@@ -36,7 +37,7 @@ module.exports = {
     return function(req, res, next) {
       var email = req.body.email
       var password = req.body.password
-      console.log(req.body)
+      logger.log(req.body)
       if (!email || !password) {
         res.status(400).send('Email or Password missing')
         return
@@ -47,17 +48,17 @@ module.exports = {
         if (!user) {
           // TODO maybe handle this differently
           res.status(401).send('Did not find a user with that email')
-          console.log('didnt get a user')
+          logger.log('didnt get a user')
         } else {
-          console.log('found user')
+          logger.log('found user')
           // check the password now
           if (user.authenticate(password)) {
             // success!
             req.user = user
-            console.log('authenticated')
+            logger.log('authenticated')
             next()
           } else if (!user.authenticate(password)) {
-            console.log('wrong password')
+            logger.log('wrong password')
             res.status(401).send('Incorrect password')
           }
         }
