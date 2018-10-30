@@ -26,7 +26,6 @@ module.exports = env => {
     devtool: env.prod ? 'source-map' : 'eval',
     module: {
       loaders: [
-        {enforce: 'pre', test: /\.js$/, loaders: ['eslint-loader'], exclude: /node_modules/},
         {test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/}
       ]
     }
