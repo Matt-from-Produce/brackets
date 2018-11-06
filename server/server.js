@@ -28,15 +28,6 @@ app.use(express.static(path.join(__dirname, '../dist/')))
 app.use('/api', api)
 app.use('/auth', auth)
 
-// send index.html on GET request to '/'
-app.get('/', function(req, res) {
-  res.sendFile(path.resolve('index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
 // give the bundle when its requested
 app.get('/dist/bundle.js', function(req, res) {
   res.sendFile(path.resolve('dist/bundle.js'), function(err) {
@@ -49,6 +40,15 @@ app.get('/dist/bundle.js', function(req, res) {
 // give the source-map when its requested
 app.get('/dist/bundle.js.map', function(req, res) {
   res.sendFile(path.resolve('dist/bundle.js.map'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+// send index.html on GET request to all paths
+app.get('/*', function(req, res) {
+  res.sendFile(path.resolve('index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
